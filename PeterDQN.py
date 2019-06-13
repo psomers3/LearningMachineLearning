@@ -30,8 +30,6 @@ total_num_steps = 0
 try:
     while i < max_ep:
         s = env.reset()
-        running_reward = 0
-
         for j in range(sim_step_limit):
             # Probabilistically pick an action given our network outputs.
             a_disc = myAgent.make_decision(s)
@@ -39,26 +37,25 @@ try:
             a = np.argmax(a_disc == a)
 
             s1, r, done, _ = env.step(a)  # Get our reward for taking an action given a bandit.
-            # [position of cart, velocity of cart, angle of pole, rotation rate of pole]
-            r = 1/np.linalg.norm([s1[0]*50, s1[1]*10, s1[2]*100, s[3]*10])
+            # s1 = [position of cart, velocity of cart, angle of pole, rotation rate of pole]
+            r = 1/np.linalg.norm([s1[0]*50, s1[1]*10, s1[2]*100, s[3]*10, 1/(j+1)])
             if done:
                 r = -1
             myAgent.log_result(s, a, r)
             s = s1
-            running_reward += r
             if done:
                 myAgent.update()
                 break
+                
         if j == sim_step_limit:
             myAgent.update()
 
         total_num_steps += j
         if i % (max_ep * 0.05) == 0 and i != 0:
             print((i / max_ep) * 100, '% Avg num steps alive: ', total_num_steps/(max_ep*0.05))
-            if total_num_steps/(max_ep*0.05) > (.95*sim_step_limit):
+            if total_num_steps/(max_ep*0.05) > (0.95*sim_step_limit):
                 break
             total_num_steps = 0
-
         i += 1
 except:
     pass
