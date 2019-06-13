@@ -9,10 +9,10 @@ if __name__ == '__main__':
     hidden_layer_specs = list()
     hidden_layer_specs.append({'layer': 'dense',
                                'units': 32,
-                               'activation': DNN.Activation.tanh})
+                               'activation': 'relu'})
     hidden_layer_specs.append({'layer': 'dense',
                                'units': 32,
-                               'activation': DNN.Activation.tanh})
+                               'activation': 'relu'})
     net = DNN(input_shape=(None, 1), output_size=1, hidden_layers=hidden_layer_specs)
     net.initiate()
     x = np.reshape(x, (len(x), 1))

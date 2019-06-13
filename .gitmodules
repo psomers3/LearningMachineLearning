@@ -1,3 +1,4 @@
 [submodule "lib/PeterNN"]
 	path = lib/PeterNN
 	url = https://github.com/psomers3/PeterNN.git
+    branch = master
