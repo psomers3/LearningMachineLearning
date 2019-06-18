@@ -15,7 +15,7 @@ if __name__ == '__main__':
                                'activation': 'relu'})
     hidden_layer_specs.append({'layer': 'dense',
                                'units': 1})
-    net = DNN.DNN(input_shape=(None, 1), layers=hidden_layer_specs)
+    net = DNN(input_shape=(None, 1), layers=hidden_layer_specs)
     net.initiate()
 
     x = np.reshape(x, (len(x), 1))
@@ -28,11 +28,10 @@ if __name__ == '__main__':
             print((i/episodes)*100, '%')
 
     json = net.write_model_to_json('./test.json')
-    new_dnn = DNN.create_from_json('./test.json')
 
     test_values = np.arange(-5, 5, 0.2)
     test_values = np.reshape(test_values, (len(test_values), 1))
-    prediction_1 = new_dnn.predict(test_values)
+    prediction_1 = net.predict(test_values)
 
     plt.figure()
     plt.scatter(x, y)

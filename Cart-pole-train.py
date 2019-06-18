@@ -20,7 +20,7 @@ layer_specs.append({'layer': 'dense',
                            'units': action_dim,
                            'activation': 'softmax'})
 
-myAgent = DQN.DQN(input_shape=(None, observation_dim), layers=layer_specs, experience_length=100)
+myAgent = DQN(input_shape=(None, observation_dim), layers=layer_specs)
 myAgent.initiate()
 myAgent.set_to_learn(True)
 
@@ -55,14 +55,4 @@ try:
 except:
     pass
 
-s = env.reset()
-myAgent.set_to_learn(False)
-input('Enter any key to start playing result:')
-while True:
-    # Probabilistically pick an action given our network outputs.
-    a = myAgent.make_decision(s)
-    s, r, done, _ = env.step(a)  # Get our reward for taking an action given a bandit.
-    env.render()
-    if done:
-        break
-env.close()
+print('done.')
