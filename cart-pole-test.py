@@ -5,7 +5,7 @@ env = gym.make('CartPole-v0')
 sim_step_limit = 1500
 env._max_episode_steps = sim_step_limit
 
-new_agent = NN.create_from_json('./DQN_test.json')
+new_agent = NN.create_from_json('./DQN_Cartpole.json')
 
 s = env.reset()
 while True:

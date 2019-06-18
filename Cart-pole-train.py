@@ -55,4 +55,5 @@ try:
 except:
     pass
 
-print('done.')
+print('done. Saving model to file ./DQN_Cartpole.json')
+myAgent.write_model_to_json('./DQN_Cartpole.json')
