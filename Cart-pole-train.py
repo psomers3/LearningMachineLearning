@@ -38,7 +38,7 @@ try:
 
                 s1, r, done, _ = env.step(a)  # Get our reward for taking an action given a bandit.
                 # s1 = [position of cart, velocity of cart, angle of pole, rotation rate of pole]
-                reward = -1 if done else 1/np.linalg.norm([s1[0]*50, s1[1]*10, s1[2]*100, s[3]*10])
+                reward = -1 if done and j != sim_step_limit-1 else 1/np.linalg.norm([s1[0]*50, s1[1]*10, s1[2]*100, s[3]*10])
                 myAgent.log_result(s, a, reward)
                 s = s1
                 if done:
