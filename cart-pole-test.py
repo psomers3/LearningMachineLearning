@@ -6,7 +6,6 @@ sim_step_limit = 1500
 env._max_episode_steps = sim_step_limit
 
 new_agent = NN.create_from_json('./DQN_test.json')
-new_agent.set_to_learn(False)
 
 s = env.reset()
 while True:
